@@ -4,9 +4,9 @@ require 'active_record'
 
 
 module YamlDb
-	def self.dump(filename)
+	def self.dump(filename, table=nil)
 		disable_logger
-		YamlDb::Dump.dump(File.new(filename, "w"))
+		YamlDb::Dump.dump(File.new(filename, "w"), table)
 		reenable_logger
 	end
 
@@ -73,9 +73,9 @@ end
 
 
 module YamlDb::Dump
-	def self.dump(io)
+	def self.dump(io, name=nil)
 		tables.each do |table|
-			dump_table(io, table)
+			dump_table(io, table) if !name.nil? && name == table
 		end
 	end
 

@@ -7,12 +7,12 @@ namespace :db do
 
 	namespace :data do
 		def db_dump_data_file
-			"#{RAILS_ROOT}/db/data.yml"
+			"#{RAILS_ROOT}/db/#{RAILS_ENV}_#{ENV['TABLE'] ? ENV['TABLE'] : 'data'}.yml"
 		end
 
 		desc "Dump contents of database to db/data.yml"
 		task(:dump => :environment) do
-			YamlDb.dump db_dump_data_file
+			YamlDb.dump(db_dump_data_file, ENV['TABLE'] || nil)
 		end
 
 		desc "Load contents of db/data.yml into database"
