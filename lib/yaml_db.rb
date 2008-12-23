@@ -75,7 +75,7 @@ end
 module YamlDb::Dump
 	def self.dump(io, name=nil)
 		tables.each do |table|
-			dump_table(io, table) if !name.nil? && name == table
+			dump_table(io, table) unless !name.nil? && name != table
 		end
 	end
 
