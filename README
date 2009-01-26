@@ -11,6 +11,18 @@ Any database that has an ActiveRecord adapter should work.
 rake db:data:dump   ->   Dump contents of Rails database to db/data.yml
 rake db:data:load   ->   Load contents of db/data.yml into the database
 
+
+ *update*
+
+Use the TABLE flag to specify dumping or loading a single table, it will
+name the YAML file after that table in that case. Not putting a TABLE flag will default to the
+original behaviour.
+
+rake db:data:dump TABLE=products
+rake db:data:load TABLE=categories
+
+
+
 Further, there are tasks db:dump and db:load which do the entire database (the equivalent of running db:schema:dump followed by db:data:load).
 
 == Examples
